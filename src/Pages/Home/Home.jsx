@@ -29,15 +29,15 @@ const Home = () => {
     <TabList className=' p-10 rounded flex justify-center items-center  gap-9'>
       <Tab  className='  border-b-2  border-pink-500 px-10 py-4 rounded-xl hover:bg-pink-400'>Pizza</Tab>
       <Tab  className=' border-b-2 border-pink-500 px-10 py-4 rounded-xl  hover:bg-pink-400'>Drinks</Tab>
-      <Tab  className=' border-b-2 border-pink-500 px-10 py-4 rounded-xl  hover:bg-pink-400'>Dessert</Tab>
+      <Tab  className=' border-b-2 border-pink-500 px-10 py-4 rounded-xl  hover:bg-pink-400 '>Dessert</Tab>
       <Tab  className=' border-b-2 border-pink-500 px-10 py-4 rounded-xl  hover:bg-pink-400 '>Soup</Tab>
     </TabList>
 
     <TabPanel className='mt-5'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-12 '>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 '>
         {
             pizza.map(item=>
-          <div key={item._id} className="card card-compact rounded-2xl  w-[330px] bg-base-100 shadow-xl ">
+          <div key={item._id} className="card card-compact rounded-2xl  w-[270px] bg-base-100 shadow-xl ">
   <figure><img className='h-52 w-full' src={item.image} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">{item.name}</h2>
@@ -53,10 +53,10 @@ const Home = () => {
     </div>
     </TabPanel>
     <TabPanel className='mt-14'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-12 '>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 '>
         {
             drinks.map(item=>
-             <div key={item._id} className="card card-compact  rounded-2xl  w-[330px] bg-base-100 shadow-xl ">
+             <div key={item._id} className="card card-compact  rounded-2xl  w-[270px] bg-base-100 shadow-xl ">
   <figure><img className='h-52 w-full' src={item.image} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">{item.name}</h2>
@@ -72,10 +72,10 @@ const Home = () => {
     </div>
     </TabPanel>
     <TabPanel className='mt-14'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-12 '>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 '>
         {
             dessert.map(item=>
-             <div key={item._id} className="card card-compact rounded-2xl  w-[330px] bg-base-100 shadow-xl ">
+             <div key={item._id} className="card card-compact rounded-2xl  w-[270px] bg-base-100 shadow-xl ">
   <figure><img className='h-52 w-full' src={item.image} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">{item.name}</h2>
@@ -91,10 +91,10 @@ const Home = () => {
     </div>
     </TabPanel>
     <TabPanel className='mt-14'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-12 '>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 '>
         {
             soup.map(item=>
-          <div key={item._id} className="card card-compact  rounded-2xl  w-[330px] bg-base-100 shadow-xl ">
+          <div key={item._id} className="card card-compact  rounded-2xl  w-[270px] bg-base-100 shadow-xl ">
   <figure><img className='h-52 w-full' src={item.image} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">{item.name}</h2>

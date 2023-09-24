@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 import UpdateModal from './UpdateModal';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const AllFood = () => {
     const [menu, setMenu] = useState([]);
@@ -86,12 +87,12 @@ const AllFood = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        {item.price}
+                                      $  {item.price}
 
                                     </td>
                                     <td>{item.category}</td>
                                     <td>
-                                        <button onClick={() => handleDelete(item)} className="btn btn-outline btn-error">Delate</button>
+                                        <button onClick={() => handleDelete(item)} className=" text-red-500 text-lg"><FaTrashAlt/></button>
 
                                     </td>
                                     <td><UpdateModal key={item.name} item={item}></UpdateModal></td>

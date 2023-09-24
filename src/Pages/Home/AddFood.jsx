@@ -46,7 +46,7 @@ const AddFood = () => {
          <label className="label">
               <span className="label-text">Food-Name</span>
             </label>
-            <input type="text" name='name' placeholder="Enter your Product name" className="input input-bordered  md:w-[600px] p-9 rounded-2xl" required/>
+            <input type="text" name='name' placeholder="Enter your Product name" className="input input-bordered  md:w-[400px] p-8 rounded-2xl" required/>
           </div>
          
           
@@ -54,26 +54,26 @@ const AddFood = () => {
          <label className="label">
               <span className="label-text">ImageURL</span>
             </label>
-            <input type="text" name="imgUrl" placeholder="Enter product image url" className="input input-bordered  p-9 rounded-2xl"required />
+            <input type="text" name="imgUrl" placeholder="Enter product image url" className="input input-bordered  p-8 rounded-2xl"required />
           </div>
           <div className="form-control">
          <label className="label">
               <span className="label-text">Price</span>
             </label>
-            <input type="text" name='price' placeholder="enter product price" className="input input-bordered  p-9 rounded-2xl" defaultValue="$" required/>
+            <input type="text" name='price' placeholder="enter product price" className="input input-bordered  p-8 rounded-2xl" defaultValue="$" required/>
           </div>
           
           <div className="form-control">
          <label className="label">
               <span className="label-text">Quantity</span>
             </label>
-            <input type="number" placeholder='enter product quantity' name='quantity'  className="input input-bordered  p-9 rounded-2xl" required/>
+            <input type="number" placeholder='enter product quantity' name='quantity'  className="input input-bordered  p-8 rounded-2xl" required/>
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Category</span>
             </label>
-            <select name='category' className=' p-7 rounded-2xl '>
+            <select name='category' className=' p-5 rounded-2xl '>
     <option value="pizza">pizza</option>
     <option value="drinks">drinks</option>
     <option value="dessert">dessert</option>
@@ -87,7 +87,7 @@ const AddFood = () => {
          <label className="label">
               <span className="label-text">Description</span>
             </label>
-            <input type="text" name="recipe" placeholder="Enter product description" className="input input-bordered  p-9 rounded-2xl" />
+            <input type="text" name="recipe" placeholder="Enter product description" className="input input-bordered  p-8 rounded-2xl" />
           </div>
           
           </div>

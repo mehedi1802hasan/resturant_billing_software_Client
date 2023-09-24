@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import { useHistory } from 'react-router-dom'; // Import useHistory from react-router-dom
+import { ImCross } from 'react-icons/im';
+
 
 const Items = () => {
     const cartData = JSON.parse(localStorage.getItem('cart'));
@@ -24,12 +26,15 @@ const Items = () => {
     };
 
     const handleDelete = (itemToDelete) => {
-        // ... (your existing code)
+        // Filter out the item to delete from the cartData
+        const updatedCart = cartData.filter((item) => item._id !== itemToDelete._id);
+
+        // Update the cart data in localStorage
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
 
         // Refresh the component to reflect the updated cart
         window.location.reload();
     };
-
     useEffect(() => {
         // Clear customerInfo when navigating to another route
         return () => {
@@ -38,35 +43,85 @@ const Items = () => {
     }, []); // The empty dependency array ensures this effect runs only once on component mount
 
     return (
-        <div>
-            <h3 className='text-3xl text-pink-500 font-serif my-16'>  Total AddTOCard Item..{cartData.length}</h3>
-            <div className=''>
-                {cartData.map((item) => (
-                    <div className='flex my-6 gap-12 justify-center items-center' key={item._id}>
-                        <h3><img className='h-16 w-16 rounded-3xl' src={item.image} alt="" /></h3>
-                        <h3>{item.name}</h3>
-                        <p>{item.price}</p>
-                        <button onClick={() => handleDelete(item)} className='btn btn-outline'> Delete</button>
-                    </div>
-                ))}
-            </div>
-            <form onSubmit={handleCustomerInfo}>
+       <div className='flex justify-between gap-12'>
+         <div className="overflow-x-auto">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th>
+         #
+        </th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+     
+            {
+                cartData.map((item,i)=>(
+                    <tr key={item._id} >
+                    <th>
+                     {i + 1}
+                    </th>
+                    <td>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img src={item.image} alt="Avatar Tailwind CSS Component" />
+                          </div>
+                        </div>
+                        <div>
+                         
+                
+                        </div>
+                      </div>
+                    </td>
+                    <td>{item.name}</td>
+                    <td>
+                    {item.price}
+                    </td>
+                    <th>
+                    <button onClick={() => handleDelete(item)} className='text-lg'> <ImCross/></button>
+                    </th>
+                  </tr>
+                ))
+            }
+      
+
+    </tbody>
+</table>
+       </div>
+
+<div className=''>
+   
+<form onSubmit={handleCustomerInfo}>
                 <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Customer-Name</span>
+                    <label className="label text-center">
+                   {customerInfo ?
+                     <h3 className='text-center font-serif'>Customare Name:{customerInfo}</h3> : <h3>Please give me customer name for payment purpose</h3>
+                   }
                     </label>
-                    <input type="text" name='customerName' placeholder="Enter your Product name" className="input input-bordered  md:w-[400px] p-5 rounded-2xl" required />
+                    <input type="text" name='customerName' placeholder="Enter the customer name" className="input input-bordered  md:w-[250px] p-5 rounded-2xl" required />
                 </div>
-                <button className='btn btn-outline'>Save</button>
+                <button className=' btn-sm btn btn-outline btn-secondary my-2 '>Enter</button>
             </form>
-            <h3>{customerInfo}</h3>
+            <div className='mt-9 mb-3'>
+     <h4 className="text-lg font-semibold ">GST(14%) : {gst}</h4>
+                    <h4 className="text-lg font-semibold ">Total Price: {gst + total}</h4>
+     </div>
             {showResults && (
                 <>
-                    <h4 className="text-3xl font-bold font-serif text-center">Tax: {gst}</h4>
-                    <h4 className="text-3xl font-bold font-serif text-center">Total Price: {gst + total}</h4>
+                   <button className='btn btn-warning btn-sm '>Payment</button>
                 </>
             )}
-        </div>
+
+</div>
+        
+</div>
     );
 };
 

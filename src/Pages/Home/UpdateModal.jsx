@@ -1,5 +1,6 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import { FaRegEdit } from 'react-icons/fa';
 
 const UpdateModal = ({ item }) => {
   const handleSubmit = (e) => {
@@ -44,10 +45,10 @@ const UpdateModal = ({ item }) => {
   return (
     <div>
        <button
-        className="btn"
+        className=" text-lg text-green-500"
         onClick={() => document.getElementById(`my_modal_4-${item._id}`).showModal()}
       >
-        Edit
+       <FaRegEdit/>
       </button>
       <dialog id={`my_modal_4-${item._id}`} className="modal">
         <div className="modal-box">
