@@ -1,24 +1,47 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Authentication/Provider';
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 const Signin = () => {
+  const navigate=useNavigate();
+  const location=useLocation();
+  const from = location.state?.from?.pathname || '/';
+  const {LoginUser}=useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const handleLogin = (event) => {
     event.preventDefault();
     const form=event.target;
     const email=form.email.value;
     const password =form.password.value;
-    console.log(email,password)
-    // Check if the entered email and password match the desired values
-    if (email ==='mehedi@gmail.com' && password ==='123456') {
-      // Redirect to the home page if they match
-         window.location.href='/'
-    } else {
-      // Show an alert if they don't match
-      alert('Email and password do not match.');
-    }
+    console.log(email,password);
+     LoginUser(email,password)
+     .then(result=>{
+      const signinUser=result.user;
+      console.log(signinUser);
+      setEmail('');
+      setPassword('');
+  
+      Swal.fire({
+        title: 'Great!',
+        text: 'Successfully Login ',
+        icon: 'success',
+        confirmButtonText: 'Done'
+      });
+      navigate(from, { replace: true }); 
+
+     })
+     .catch(error=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Login Failed!',
+      })
+     })
+    
   };
 
   return (

@@ -60,7 +60,7 @@ const AddFood = () => {
          <label className="label">
               <span className="label-text">Price</span>
             </label>
-            <input type="text" name='price' placeholder="enter product price" className="input input-bordered  p-8 rounded-2xl" defaultValue="" required/>
+            <input type="number" name='price' placeholder="enter product price" className="input input-bordered  p-8 rounded-2xl" defaultValue="" required/>
           </div>
           
           <div className="form-control">

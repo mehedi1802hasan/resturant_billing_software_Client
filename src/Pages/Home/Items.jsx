@@ -6,8 +6,9 @@ import { BsCurrencyRupee } from 'react-icons/bs';
 
 
 const Items = () => {
-    const cartData = JSON.parse(localStorage.getItem('cart'));
+    const cartDatainfo = JSON.parse(localStorage.getItem('cart'));
     const customerInfo = JSON.parse(localStorage.getItem('customerInfo'));
+    const [cartData,setCartData]=useState(cartDatainfo);
     const [showResults, setShowResults] = useState(false);
     const [customerName, setCustomerName] = useState('');
     // const history = useHistory(); // Get the history object for navigation
@@ -15,10 +16,11 @@ const Items = () => {
 //     const total = cartData.reduce((sum, item) => item.price + sum, 0).toFixed(2);
 // const gst = (parseFloat(total) * 0.05); // Calculate GST as 5% of total without formatting
 
-const total =cartData.reduce((sum, item) => item.price + sum, 0);
+const total =cartData.reduce((sum, item) => Number(item.price) + sum, 0);
 const gst = total * 0.05;
-
-
+console.log('cartData...',cartData);
+console.log('cartDatainfo..',cartDatainfo)
+// console.log('customerInfo...',customerInfo)
     const handleCustomerInfo = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -34,17 +36,22 @@ const gst = total * 0.05;
     const handleDelete = (itemToDelete) => {
         // Filter out the item to delete from the cartData
         const updatedCart = cartData.filter((item) => item._id !== itemToDelete._id);
-
+        
+        console.log('console updated card///',updatedCart)
         // Update the cart data in localStorage
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-
+          setCartData(updatedCart)
         // Refresh the component to reflect the updated cart
-        window.location.reload();
+        // window.location.reload();
+        // setCustomerInfo(updatedCart)
+
     };
     useEffect(() => {
+
         // Clear customerInfo when navigating to another route
         return () => {
             localStorage.removeItem('customerInfo');
+
         };
     }, []); // The empty dependency array ensures this effect runs only once on component mount
 
@@ -120,12 +127,12 @@ const gst = total * 0.05;
 
             <div className='mt-4 mb-3'>
      <div>
-     <h3  className=' flex items-center gap-20'><span className='font-serif'>Item </span><span className='flex items-center gap-1'>  <BsCurrencyRupee/> {total}</span> </h3>
-     <h4 className="  flex items-center gap-11 my-2"><span  className='text-lg '> <span className='font-serif'>GST</span>(5%) </span>   <span className='flex items-center gap-1'>  <BsCurrencyRupee/> {gst}</span> </h4>
+     <h3  className=' flex items-center gap-20'><span className='font-serif'>Item </span><span className='flex items-center gap-1'>  <BsCurrencyRupee/> {total.toFixed(2)}</span> </h3>
+     <h4 className="  flex items-center gap-11 my-2"><span  className='text-lg '> <span className='font-serif'>GST</span>(5%) </span>   <span className='flex items-center gap-1'>  <BsCurrencyRupee/> {gst.toFixed(2)}</span> </h4>
      </div>
      <div className="divider mt-0 mb-0 w-8/12"></div>
 
-     <h4 className="text-lg font-semibold  flex items-center gap-16"><span className='text-lg font-serif'>Total </span>  <span className='flex items-center gap-1'>  <BsCurrencyRupee/>  {gst + total}</span> </h4>
+     <h4 className="text-lg font-semibold  flex items-center gap-16"><span className='text-lg font-serif'>Total </span>  <span className='flex items-center gap-1'>  <BsCurrencyRupee/>  {(gst + total).toFixed(2)}</span> </h4>
      </div>
             { (
                 <div className=''> 

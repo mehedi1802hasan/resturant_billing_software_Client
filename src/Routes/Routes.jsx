@@ -12,6 +12,7 @@ import Customers from '../Pages/Home/Customers';
 import AllFood from '../Pages/Home/AllFood';
 import AddFood from '../Pages/Home/AddFood';
 import Payment from '../Pages/Payment/Payment';
+import PrivateRoute from './PrivateRoute';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       children:[
         {
             path:'/',
-            element:<Home></Home>
+            element:<PrivateRoute><Home></Home></PrivateRoute>
         },{
           path:"/signin",
           element:<Signin></Signin>
@@ -29,26 +30,26 @@ const router = createBrowserRouter([
           element:<SignUp></SignUp>
         },{
           path:'/item',
-          element:<Items></Items>
+          element:<PrivateRoute><Items></Items></PrivateRoute>
         },
         {
           path:'/bills',
-          element:<Bills></Bills>
+          element:<PrivateRoute><Bills></Bills></PrivateRoute>
         },
         {
           path:'/customers',
-          element:<Customers></Customers>
+          element:<PrivateRoute><Customers></Customers></PrivateRoute>
         },
         {
           path:'/allfood',
-          element:<AllFood></AllFood>
+          element:<PrivateRoute><AllFood></AllFood></PrivateRoute>
         },
         {
           path:'/addfood',
-          element:<AddFood></AddFood>
+          element:<PrivateRoute><AddFood></AddFood></PrivateRoute>
         },{
           path:'/payment',
-          element:<Payment></Payment>
+          element:<PrivateRoute><Payment></Payment></PrivateRoute>
         }
       ]
     ,

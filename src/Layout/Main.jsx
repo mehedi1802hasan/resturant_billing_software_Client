@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import { BiMessageAltAdd } from 'react-icons/bi';
@@ -6,8 +6,18 @@ import { AiTwotoneSave } from 'react-icons/ai';
 import { SiFoodpanda } from 'react-icons/si';
 import { MdWorkHistory } from 'react-icons/md';
 import { PiSignIn } from 'react-icons/pi';
+import { AuthContext } from '../Authentication/Provider';
 
 const Main = () => {
+    const {user,LogOut}=useContext(AuthContext);
+    const handleLogOut=()=>{
+        console.log('clicked')
+        LogOut()
+        .then(() => {})
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
     return (
         <div>
             <div className="drawer lg:drawer-open bg-pink-100">
@@ -17,7 +27,7 @@ const Main = () => {
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                     <Outlet></Outlet>
                 </div>
-                <div className="drawer-side">
+              { user &&  <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4  gap-5 w-80 min-h-full  text-base-content bg-pink-300">
                         {/* Sidebar content here */}
@@ -40,12 +50,21 @@ const Main = () => {
                             isPending ? "pending" : isActive ? "active" : ""
                         }><MdWorkHistory></MdWorkHistory> Bills</NavLink></li>
 
-                        <li><NavLink to="/signIn" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }><PiSignIn/> SignIn</NavLink></li>
+                       {
+                        user? 
+                        <li><NavLink onClick={handleLogOut} to="/signin" className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "active" : ""
+                    }><PiSignIn/> Logout</NavLink></li>
+                        :
+                         <li><NavLink to="/signin" className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "active" : ""
+                    }><PiSignIn/> SignIn</NavLink></li>
+                    
+                       }
                     </ul>
+                    
 
-                </div>
+                </div>}
             </div>
         </div>
     );
