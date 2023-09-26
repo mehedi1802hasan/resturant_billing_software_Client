@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 // import { useHistory } from 'react-router-dom'; // Import useHistory from react-router-dom
 import { ImCross } from 'react-icons/im';
+import { Link } from 'react-router-dom';
+import { BsCurrencyRupee } from 'react-icons/bs';
 
 
 const Items = () => {
@@ -10,8 +12,12 @@ const Items = () => {
     const [customerName, setCustomerName] = useState('');
     // const history = useHistory(); // Get the history object for navigation
 
-    const total = cartData.reduce((sum, item) => item.price + sum, 0);
-    const gst = total * 0.14;
+//     const total = cartData.reduce((sum, item) => item.price + sum, 0).toFixed(2);
+// const gst = (parseFloat(total) * 0.05); // Calculate GST as 5% of total without formatting
+
+const total =cartData.reduce((sum, item) => item.price + sum, 0);
+const gst = total * 0.05;
+
 
     const handleCustomerInfo = (e) => {
         e.preventDefault();
@@ -43,8 +49,8 @@ const Items = () => {
     }, []); // The empty dependency array ensures this effect runs only once on component mount
 
     return (
-       <div className='flex justify-between gap-12'>
-         <div className="overflow-x-auto">
+       <div className='md:flex justify-between gap-x-14  p-20 dev '>
+         <div className="overflow-x-auto mb-12">
   <table className="table">
     {/* head */}
     <thead>
@@ -58,12 +64,12 @@ const Items = () => {
         <th>Delete</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody  >
 
      
             {
                 cartData.map((item,i)=>(
-                    <tr key={item._id} >
+                    <tr key={item._id}>
                     <th>
                      {i + 1}
                     </th>
@@ -95,28 +101,36 @@ const Items = () => {
     </tbody>
 </table>
        </div>
-
+       <div className="divider lg:divider-horizontal"></div> 
 <div className=''>
    
 <form onSubmit={handleCustomerInfo}>
                 <div className="form-control">
-                    <label className="label text-center">
+                    <label className="label ">
                    {customerInfo ?
                      <h3 className='text-center font-serif'>Customare Name:{customerInfo}</h3> : <h3>Please give me customer name for payment purpose</h3>
                    }
                     </label>
-                    <input type="text" name='customerName' placeholder="Enter the customer name" className="input input-bordered  md:w-[250px] p-5 rounded-2xl" required />
+                    <input type="text" name='customerName' placeholder="Enter the customer name" className="input input-bordered w-[300px] lg:w-[300px]  md:w-[250px] p-5 rounded-2xl" required />
                 </div>
                 <button className=' btn-sm btn btn-outline btn-secondary my-2 '>Enter</button>
             </form>
-            <div className='mt-9 mb-3'>
-     <h4 className="text-lg font-semibold ">GST(14%) : {gst}</h4>
-                    <h4 className="text-lg font-semibold ">Total Price: {gst + total}</h4>
+            <div className="divider mt-0 mb-0  "></div>
+
+
+            <div className='mt-4 mb-3'>
+     <div>
+     <h3  className=' flex items-center gap-20'><span className='font-serif'>Item </span><span className='flex items-center gap-1'>  <BsCurrencyRupee/> {total}</span> </h3>
+     <h4 className="  flex items-center gap-11 my-2"><span  className='text-lg '> <span className='font-serif'>GST</span>(5%) </span>   <span className='flex items-center gap-1'>  <BsCurrencyRupee/> {gst}</span> </h4>
      </div>
-            {showResults && (
-                <>
-                   <button className='btn btn-warning btn-sm '>Payment</button>
-                </>
+     <div className="divider mt-0 mb-0 w-8/12"></div>
+
+     <h4 className="text-lg font-semibold  flex items-center gap-16"><span className='text-lg font-serif'>Total </span>  <span className='flex items-center gap-1'>  <BsCurrencyRupee/>  {gst + total}</span> </h4>
+     </div>
+            { (
+                <div className=''> 
+                   <Link to='/payment' className='btn btn-warning bg-green-500   '>Processd to checkout</Link>
+                </div>
             )}
 
 </div>

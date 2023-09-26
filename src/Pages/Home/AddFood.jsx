@@ -30,7 +30,7 @@ const AddFood = () => {
               if(data.insertedId){
                 Swal.fire({
                   title: 'Great!',
-                  text: 'Successfully Posted to Mongodb',
+                  text: 'Food Item Successfully Posted ',
                   icon: 'success',
                   confirmButtonText: 'Done'
                 })
@@ -38,15 +38,15 @@ const AddFood = () => {
           })
       }
       return (
-        <div>
-            <h4 className='text-center font-serif text-4xl -mt-10'>Add Food </h4>
+        <div className=''>
+            <h4 className='text-center font-serif text-4xl mt-12'>Add Food </h4>
         <form onSubmit={handleAddFood} className=" card-body">
         <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
           <div className="form-control">
          <label className="label">
               <span className="label-text">Food-Name</span>
             </label>
-            <input type="text" name='name' placeholder="Enter your Product name" className="input input-bordered  md:w-[400px] p-8 rounded-2xl" required/>
+            <input type="text" name='name' placeholder="Enter your Product name" className="input input-bordered   p-8 rounded-2xl" required/>
           </div>
          
           
@@ -60,7 +60,7 @@ const AddFood = () => {
          <label className="label">
               <span className="label-text">Price</span>
             </label>
-            <input type="text" name='price' placeholder="enter product price" className="input input-bordered  p-8 rounded-2xl" defaultValue="$" required/>
+            <input type="text" name='price' placeholder="enter product price" className="input input-bordered  p-8 rounded-2xl" defaultValue="" required/>
           </div>
           
           <div className="form-control">
@@ -74,10 +74,13 @@ const AddFood = () => {
               <span className="label-text">Category</span>
             </label>
             <select name='category' className=' p-5 rounded-2xl '>
+            <option value="starter">starter</option>
+        <option value="mainMeals">main-mill</option>
     <option value="pizza">pizza</option>
     <option value="drinks">drinks</option>
     <option value="dessert">dessert</option>
     <option value="soup">soup</option>
+   
    
   </select>
            

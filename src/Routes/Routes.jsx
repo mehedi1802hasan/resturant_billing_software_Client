@@ -11,6 +11,7 @@ import Bills from '../Pages/Home/Bills';
 import Customers from '../Pages/Home/Customers';
 import AllFood from '../Pages/Home/AllFood';
 import AddFood from '../Pages/Home/AddFood';
+import Payment from '../Pages/Payment/Payment';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -45,6 +46,9 @@ const router = createBrowserRouter([
         {
           path:'/addfood',
           element:<AddFood></AddFood>
+        },{
+          path:'/payment',
+          element:<Payment></Payment>
         }
       ]
     ,
