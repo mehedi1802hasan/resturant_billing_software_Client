@@ -11,10 +11,6 @@ const Items = () => {
     const [cartData,setCartData]=useState(cartDatainfo);
     const [showResults, setShowResults] = useState(false);
     const [customerName, setCustomerName] = useState('');
-    // const history = useHistory(); // Get the history object for navigation
-
-//     const total = cartData.reduce((sum, item) => item.price + sum, 0).toFixed(2);
-// const gst = (parseFloat(total) * 0.05); // Calculate GST as 5% of total without formatting
 
 const total =cartData.reduce((sum, item) => Number(item.price) + sum, 0);
 const gst = total * 0.05;

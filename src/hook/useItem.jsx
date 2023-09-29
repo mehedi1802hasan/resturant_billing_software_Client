@@ -4,7 +4,7 @@ const useItem = () => {
     const { data: menu = [], isLoading: loading, refetch } = useQuery({
         queryKey: ['menu'],
         queryFn: async () => {
-          const res = await fetch('http://localhost:5000/menu');
+          const res = await fetch('https://resturant-server-o7tc2ddyw-mehedi1802hasan.vercel.app/menu');
           return res.json();
         }
       });

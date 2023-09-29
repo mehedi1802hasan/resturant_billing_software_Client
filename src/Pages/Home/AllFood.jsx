@@ -19,7 +19,7 @@ const AllFood = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/menu/${item._id}`, {
+        fetch(`https://resturant-server-o7tc2ddyw-mehedi1802hasan.vercel.app/menu/${item._id}`, {
           method: 'DELETE'
         })
           .then((res) => res.json())
@@ -86,8 +86,8 @@ const AllFood = () => {
                       </div>
                     </div>
                   </td>
-                  <td className='flex items-center'>
-                    <BsCurrencyRupee/> {item.price}
+                  <td className=''>
+                 <span className='flex items-center gap-1'> <BsCurrencyRupee/>{item.price}</span>
                   </td>
                   <td>{item.category}</td>
                   <td>

@@ -76,7 +76,7 @@ const Signin = () => {
         <div className="form-control mt-6">
           <button className="btn  btn-warning">Login</button>
         </div>
-        <h3 className='mt-3'>Already have an account? <Link className='text-blue-500 font-serif' to='/signup'>Sign Up</Link> </h3>
+        {/* <h3 className='mt-3'>Already have an account? <Link className='text-blue-500 font-serif' to='/signup'>Sign Up</Link> </h3> */}
 
       </div>
     </div>

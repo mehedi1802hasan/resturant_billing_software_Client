@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB-W-RsMNQ8hWlM475XEoCoEINI_Hfgmqw",
-  authDomain: "billingresturant.firebaseapp.com",
-  projectId: "billingresturant",
-  storageBucket: "billingresturant.appspot.com",
-  messagingSenderId: "582388360581",
-  appId: "1:582388360581:web:97e87e13053405e94c10ec"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
