@@ -9,7 +9,7 @@ const Home = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(()=>{
-    fetch('https://resturant-server-o7tc2ddyw-mehedi1802hasan.vercel.app/menu')
+    fetch('https://resturant-server-gray.vercel.app/menu')
     .then(res=>res.json())
     .then(data=>setMenu(data))
   },[]);

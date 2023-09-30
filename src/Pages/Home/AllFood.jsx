@@ -19,7 +19,7 @@ const AllFood = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://resturant-server-o7tc2ddyw-mehedi1802hasan.vercel.app/menu/${item._id}`, {
+        fetch(`https://resturant-server-gray.vercel.app/menu/${item._id}`, {
           method: 'DELETE'
         })
           .then((res) => res.json())

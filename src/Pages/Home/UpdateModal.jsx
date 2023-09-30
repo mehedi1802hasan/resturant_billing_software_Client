@@ -14,7 +14,7 @@ const UpdateModal = ({ item }) => {
     const addFood={
         name,price,quantity,image
         }
-    fetch(`https://resturant-server-o7tc2ddyw-mehedi1802hasan.vercel.app/menu/${item._id}`,{
+    fetch(`https://resturant-server-gray.vercel.app/menu/${item._id}`,{
         method:"PUT",
         headers:{
             'content-type':'application/json'
