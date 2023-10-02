@@ -55,6 +55,11 @@ const Signin = () => {
     <div className="card flex-shrink-0 w-full max-w-sm  bg-base-100">
       <div className="card-body font-serif">
        <div className='mb-2'>
+       <h3 className='text-2xl mb-2  font-normal text-red-500'>
+    Sir,<br />  <span> Email: a@gmail.com </span>
+        <span> Password: 123456</span>
+         </h3>
+
        <h3 className='text-2xl mb-2 font-bold font-serif'>Sign In </h3>
         <p className='text-xl'>Enter your details to Login.</p>
        </div>

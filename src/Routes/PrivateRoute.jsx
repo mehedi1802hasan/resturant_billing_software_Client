@@ -11,7 +11,7 @@ const PrivateRoute = ({children}) => {
     if(loading){
         return(
             <div className="flex items-center justify-center h-screen">
-     <h3>Loading....</h3>
+     <h3 ><img  src="https://i.ibb.co/P5WZkLx/animation-ln5rapga-small.gif" alt="" /></h3>
       </div>
         )
     }
