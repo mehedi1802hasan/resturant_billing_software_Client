@@ -3,17 +3,22 @@ import React, { useEffect, useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 import { BsCurrencyRupee } from 'react-icons/bs';
+import Swal from 'sweetalert2';
 
 
 const Items = () => {
     const cartDatainfo = JSON.parse(localStorage.getItem('cart'));
+    const itemsName=cartDatainfo.map(item=>item.name)
+    console.log('itemsName...',itemsName)
     const customerInfo = JSON.parse(localStorage.getItem('customerInfo'));
     const [cartData,setCartData]=useState(cartDatainfo);
     const [showResults, setShowResults] = useState(false);
     const [customerName, setCustomerName] = useState('');
+    const [checkoutOpen,setCheckoutOpen]=useState(false);
 
-const total =cartData.reduce((sum, item) => Number(item.price) + sum, 0);
-const gst = total * 0.05;
+const itemPrice =cartData.reduce((sum, item) => Number(item.price) + sum, 0);
+const gst = itemPrice * 0.05;
+const total=itemPrice + gst;
 console.log('cartData...',cartData);
 console.log('cartDatainfo..',cartDatainfo)
 // console.log('customerInfo...',customerInfo)
@@ -23,7 +28,7 @@ console.log('cartDatainfo..',cartDatainfo)
         const customerName = form.customerName.value;
         console.log(customerName);
         localStorage.setItem('customerInfo', JSON.stringify(customerName));
-
+        setCheckoutOpen(true)
         setCustomerName('');
 
         setShowResults(true);
@@ -50,6 +55,40 @@ console.log('cartDatainfo..',cartDatainfo)
 
         };
     }, []); // The empty dependency array ensures this effect runs only once on component mount
+ 
+ const handleCheckOut=()=>{
+    console.log(total)
+
+  const checkOut={
+  price:total,customerName:customerInfo,items:itemsName
+  }
+  console.log(checkOut)
+  fetch('http://localhost:5000/checkout',{
+      method:"POST",
+      headers:{
+          'content-type':'application/json'
+      },
+      body:JSON.stringify(checkOut)
+  })
+  .then(res=>res.json())
+  .then(data=>{
+      console.log(data)
+      if(data.insertedId){
+        Swal.fire({
+          title: 'Great!',
+          text: 'Food Item Successfully Posted ',
+          icon: 'success',
+          confirmButtonText: 'Done'
+        })
+      }
+  })
+  // localStorage.removeItem('customerInfo');
+  setCartData([]);
+  localStorage.removeItem('customerInfo');
+  setCheckoutOpen(false)
+
+}
+
 
     return (
        <div className='md:flex justify-between gap-x-14  p-20 dev '>
@@ -114,7 +153,8 @@ console.log('cartDatainfo..',cartDatainfo)
                      <h3 className='text-center font-serif'>Customare Name:{customerInfo}</h3> : <h3>Please give me customer name for payment purpose</h3>
                    }
                     </label>
-                    <input type="text" name='customerName' placeholder="Enter the customer name" className="input input-bordered w-[300px] lg:w-[300px]  md:w-[250px] p-5 rounded-2xl" required />
+                    <input type="text" name='customerName' placeholder="Enter the customer name" className="input input-bordered w-[300px] lg:w-[300px]  md:w-[250px] p-5 rounded-2xl"   value={customerName} 
+            onChange={(e) => setCustomerName(e.target.value)} required />
                 </div>
                 <button className=' btn-sm btn btn-outline btn-secondary my-2 '>Enter</button>
             </form>
@@ -123,16 +163,16 @@ console.log('cartDatainfo..',cartDatainfo)
 
             <div className='mt-4 mb-3'>
      <div>
-     <h3  className=' flex items-center gap-20'><span className='font-serif'>Item </span><span className='flex items-center gap-1'>  <BsCurrencyRupee/> {total.toFixed(2)}</span> </h3>
+     <h3  className=' flex items-center gap-20'><span className='font-serif'>Item </span><span className='flex items-center gap-1'>  <BsCurrencyRupee/> {itemPrice.toFixed(2)}</span> </h3>
      <h4 className="  flex items-center gap-11 my-2"><span  className='text-lg '> <span className='font-serif'>GST</span>(5%) </span>   <span className='flex items-center gap-1'>  <BsCurrencyRupee/> {gst.toFixed(2)}</span> </h4>
      </div>
      <div className="divider mt-0 mb-0 w-8/12"></div>
 
-     <h4 className="text-lg font-semibold  flex items-center gap-16"><span className='text-lg font-serif'>Total </span>  <span className='flex items-center gap-1'>  <BsCurrencyRupee/>  {(gst + total).toFixed(2)}</span> </h4>
+     <h4 className="text-lg font-semibold  flex items-center gap-16"><span className='text-lg font-serif'>Total </span>  <span className='flex items-center gap-1'>  <BsCurrencyRupee/>  {(total).toFixed(2)}</span> </h4>
      </div>
-            { (
+            { checkoutOpen && (
                 <div className=''> 
-                   <Link to='/payment' className='btn btn-warning bg-green-500   '>Processd to checkout</Link>
+                   <button onClick={handleCheckOut} className='btn btn-warning bg-green-500   '>Processd to checkout</button>
                 </div>
             )}
 
