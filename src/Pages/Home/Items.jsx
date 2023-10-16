@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { useHistory } from 'react-router-dom'; // Import useHistory from react-router-dom
 import { ImCross } from 'react-icons/im';
-import { Link } from 'react-router-dom';
 import { BsCurrencyRupee } from 'react-icons/bs';
 import Swal from 'sweetalert2';
 
@@ -63,7 +62,7 @@ console.log('cartDatainfo..',cartDatainfo)
   price:total,customerName:customerInfo,items:itemsName
   }
   console.log(checkOut)
-  fetch('http://localhost:5000/checkout',{
+  fetch('https://resturant-server-gray.vercel.app/checkout',{
       method:"POST",
       headers:{
           'content-type':'application/json'
@@ -76,7 +75,7 @@ console.log('cartDatainfo..',cartDatainfo)
       if(data.insertedId){
         Swal.fire({
           title: 'Great!',
-          text: 'Food Item Successfully Posted ',
+          text: 'checkout Done ',
           icon: 'success',
           confirmButtonText: 'Done'
         })
@@ -91,7 +90,7 @@ console.log('cartDatainfo..',cartDatainfo)
 
 
     return (
-       <div className='md:flex justify-between gap-x-14  p-20 dev '>
+       <div className='md:flex justify-between gap-x-14 p-1 lg:p-20 md:p-20 dev '>
          <div className="overflow-x-auto mb-12">
   <table className="table">
     {/* head */}
@@ -172,7 +171,7 @@ console.log('cartDatainfo..',cartDatainfo)
      </div>
             { checkoutOpen && (
                 <div className=''> 
-                   <button onClick={handleCheckOut} className='btn btn-warning bg-green-500   '>Processd to checkout</button>
+               <button onClick={handleCheckOut} className='btn btn-warning bg-green-500   '>Processd to checkout</button>
                 </div>
             )}
 

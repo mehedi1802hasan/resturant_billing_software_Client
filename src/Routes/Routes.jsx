@@ -11,8 +11,8 @@ import Bills from '../Pages/Home/Bills';
 import Customers from '../Pages/Home/Customers';
 import AllFood from '../Pages/Home/AllFood';
 import AddFood from '../Pages/Home/AddFood';
-import Payment from '../Pages/Payment/Payment';
 import PrivateRoute from './PrivateRoute';
+import Error from '../SharedComponent/Error';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -25,10 +25,11 @@ const router = createBrowserRouter([
           path:"/signin",
           element:<Signin></Signin>
         },
+        // {
+        //   path:"/signup",
+        //   element:<SignUp></SignUp>
+        // },
         {
-          path:"/signup",
-          element:<SignUp></SignUp>
-        },{
           path:'/item',
           element:<PrivateRoute><Items></Items></PrivateRoute>
         },
@@ -48,8 +49,8 @@ const router = createBrowserRouter([
           path:'/addfood',
           element:<PrivateRoute><AddFood></AddFood></PrivateRoute>
         },{
-          path:'/payment',
-          element:<PrivateRoute><Payment></Payment></PrivateRoute>
+          path:'*',
+          element:<Error></Error>
         }
       ]
     ,

@@ -50,13 +50,13 @@ const AllFood = () => {
   }
 
   return (
-    <div>
+    <div className='p-1'>
       <h4 className='text-center text-pink-500 text-3xl '> Total Menu: {menu.length}</h4>
-      <div className="overflow-x-auto">
-        <table className="table">
+      <div className="md:overflow-x-auto ">
+        <table className="md:table">
           {/* head */}
-          <thead>
-            <tr>
+          <thead className=''>
+            <tr className='md:text-lg font-serif text-black font-bold'>
               <th>
                 #
               </th>
@@ -64,7 +64,7 @@ const AllFood = () => {
               <th>Price</th>
               <th>Category</th>
               <th>Delete</th>
-              <th>Edit</th>
+              <th className='text-xs '>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -77,7 +77,7 @@ const AllFood = () => {
                   <td>
                     <div className="flex items-center space-x-3">
                       <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
+                        <div className="mask mask-squircle  md:w-12 md:h-12">
                           <img src={item.image} alt="Avatar Tailwind CSS Component" />
                         </div>
                       </div>
@@ -91,9 +91,9 @@ const AllFood = () => {
                   </td>
                   <td>{item.category}</td>
                   <td>
-                    <button onClick={() => handleDelete(item)} className=" text-red-500 text-lg"><FaTrashAlt /></button>
+                    <button onClick={() => handleDelete(item)} className=" text-red-500 lg:text-lg md:text-lg"><FaTrashAlt /></button>
                   </td>
-                  <td><UpdateModal key={item.name} item={item}></UpdateModal></td>
+                  <td><UpdateModal key={item.name} refetch={refetch} item={item}></UpdateModal></td>
                 </tr>
               ))
             }

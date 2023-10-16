@@ -1,0 +1,30 @@
+/* print.css */
+@media print {
+    /* Increase the font size for all text when printing */
+    body {
+      font-size: 28px; /* Adjust the font size as needed */
+    
+    }
+    .mm{
+        display: block;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        
+    }
+    .m {
+        display:grid;
+        grid-template-columns: 4fr; 
+       grid-row-gap: 20px; /* Adjust the gap size as needed */
+      }
+    /* Hide elements with the no-print class when printing */
+    .no-print {
+      display: none;
+    }
+    .print-flex{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px; 
+    }
+    
+}

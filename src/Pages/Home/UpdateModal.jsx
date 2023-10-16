@@ -2,7 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import { FaRegEdit } from 'react-icons/fa';
 
-const UpdateModal = ({ item }) => {
+const UpdateModal = ({ item,refetch }) => {
   const handleSubmit = (e) => {
     // e.preventDefault();
     const form = e.target;
@@ -25,6 +25,7 @@ const UpdateModal = ({ item }) => {
     .then(data=>{
         console.log(data)
       if(data.modifiedCount>0){
+        refetch();
         Swal.fire({
             title: 'Well-done!!',
             text: 'Updated  successfully ',

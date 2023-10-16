@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(()=>{
     fetch('https://resturant-server-gray.vercel.app/menu')
-    // fetch('http://localhost:5000/menu')
+    // fetch('https://resturant-server-gray.vercel.app/menu')
     .then(res=>res.json())
     .then(data=>{
       console.log(data)
@@ -45,7 +45,7 @@ const Home = () => {
 
 
     <TabPanel className='mt-5'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-x-8  gap-y-6'>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-x-8  gap-y-6 w-60 mx-auto md:w-full lg:full'>
         {
             starter.map(item=>
           <div key={item._id} className="card card-compact rounded-2xl  w-[270px] bg-base-100 shadow-md border  ">
@@ -64,7 +64,7 @@ const Home = () => {
     </div>
     </TabPanel>
     <TabPanel className='mt-5'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-x-8  gap-y-6'>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-x-8  gap-y-6 w-60 mx-auto md:w-full lg:full'>
         {
             mainMeals.map(item=>
           <div key={item._id} className="card card-compact rounded-2xl  w-[270px] bg-base-100 shadow-md border  ">
@@ -84,7 +84,7 @@ const Home = () => {
     </TabPanel>
 
     <TabPanel className='mt-5'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-x-8  gap-y-6'>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-x-8  gap-y-6  w-60 mx-auto md:w-full lg:full'>
         {
             pizza.map(item=>
           <div key={item._id} className="card card-compact rounded-2xl  w-[270px] bg-base-100 shadow-md border  ">
@@ -103,7 +103,7 @@ const Home = () => {
     </div>
     </TabPanel>
     <TabPanel className='mt-14'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 '>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 w-60 mx-auto md:w-full lg:full'>
         {
             drinks.map(item=>
              <div key={item._id} className="card card-compact  rounded-2xl  w-[270px] bg-base-100 shadow-xl ">
@@ -122,7 +122,7 @@ const Home = () => {
     </div>
     </TabPanel>
     <TabPanel className='mt-14'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 '>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 w-60 mx-auto md:w-full lg:full'>
         {
             dessert.map(item=>
              <div key={item._id} className="card card-compact rounded-2xl  w-[270px] bg-base-100 shadow-xl ">
@@ -141,7 +141,7 @@ const Home = () => {
     </div>
     </TabPanel>
     <TabPanel className='mt-14'>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 '>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-5 w-60 mx-auto md:w-full lg:full'>
         {
             soup.map(item=>
           <div key={item._id} className="card card-compact  rounded-2xl  w-[270px] bg-base-100 shadow-xl ">
