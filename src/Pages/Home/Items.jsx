@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { BsCurrencyRupee } from 'react-icons/bs';
 import Swal from 'sweetalert2';
+import DateTimePicker from 'react-datetime-picker';
 
 
 const Items = () => {
@@ -14,6 +15,7 @@ const Items = () => {
     const [showResults, setShowResults] = useState(false);
     const [customerName, setCustomerName] = useState('');
     const [checkoutOpen,setCheckoutOpen]=useState(false);
+    const [dateTime, setDateTime] = useState(new Date());
 
 const itemPrice =cartData.reduce((sum, item) => Number(item.price) + sum, 0);
 const gst = itemPrice * 0.05;
@@ -57,9 +59,10 @@ console.log('cartDatainfo..',cartDatainfo)
  
  const handleCheckOut=()=>{
     console.log(total)
-
+    const time = dateTime.toISOString();
+// console.log('clg..', total,customerInfo,itemsName,time)
   const checkOut={
-  price:total,customerName:customerInfo,items:itemsName
+  price:total,customerName:customerInfo,items:itemsName,time
   }
   console.log(checkOut)
   fetch('https://resturant-server-gray.vercel.app/checkout',{
@@ -166,7 +169,12 @@ console.log('cartDatainfo..',cartDatainfo)
      <h4 className="  flex items-center gap-11 my-2"><span  className='text-lg '> <span className='font-serif'>GST</span>(5%) </span>   <span className='flex items-center gap-1'>  <BsCurrencyRupee/> {gst.toFixed(2)}</span> </h4>
      </div>
      <div className="divider mt-0 mb-0 w-8/12"></div>
-
+     <div className="mb-4  ">
+          <DateTimePicker
+            onChange={setDateTime}
+            value={dateTime}
+          />
+        </div>
      <h4 className="text-lg font-semibold  flex items-center gap-16"><span className='text-lg font-serif'>Total </span>  <span className='flex items-center gap-1'>  <BsCurrencyRupee/>  {(total).toFixed(2)}</span> </h4>
      </div>
             { checkoutOpen && (

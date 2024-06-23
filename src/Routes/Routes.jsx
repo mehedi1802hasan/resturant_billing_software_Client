@@ -1,17 +1,17 @@
-import React from 'react';
+// import React from 'react';
 import {
     createBrowserRouter,
   } from "react-router-dom";
 import Main from '../Layout/Main';
 import Home from '../Pages/Home/Home';
-import Signin from '../Pages/SinginUp/Signin';
-import SignUp from '../Pages/SinginUp/signUp';
+// import Signin from '../Pages/SinginUp/Signin';
+// import SignUp from '../Pages/SinginUp/signUp';
 import Items from '../Pages/Home/Items';
 import Bills from '../Pages/Home/Bills';
 import Customers from '../Pages/Home/Customers';
 import AllFood from '../Pages/Home/AllFood';
 import AddFood from '../Pages/Home/AddFood';
-import PrivateRoute from './PrivateRoute';
+// import PrivateRoute from './PrivateRoute';
 import Error from '../SharedComponent/Error';
 const router = createBrowserRouter([
     {
@@ -20,10 +20,7 @@ const router = createBrowserRouter([
       children:[
         {
             path:'/',
-            element:<PrivateRoute><Home></Home></PrivateRoute>
-        },{
-          path:"/signin",
-          element:<Signin></Signin>
+            element:<Home></Home>
         },
         // {
         //   path:"/signup",
@@ -31,23 +28,23 @@ const router = createBrowserRouter([
         // },
         {
           path:'/item',
-          element:<PrivateRoute><Items></Items></PrivateRoute>
+          element:<Items></Items>
         },
         {
           path:'/bills',
-          element:<PrivateRoute><Bills></Bills></PrivateRoute>
+          element:<Bills></Bills>
         },
         {
           path:'/customers',
-          element:<PrivateRoute><Customers></Customers></PrivateRoute>
+          element:<Customers></Customers>
         },
         {
           path:'/allfood',
-          element:<PrivateRoute><AllFood></AllFood></PrivateRoute>
+          element:<AllFood></AllFood>
         },
         {
           path:'/addfood',
-          element:<PrivateRoute><AddFood></AddFood></PrivateRoute>
+          element:<AddFood></AddFood>
         },{
           path:'*',
           element:<Error></Error>
